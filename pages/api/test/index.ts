@@ -23,7 +23,7 @@ export default async function handler(
 
     //console.log(response.data.choices[0].text, "responseText");
 
-    res.status(200).send(responseText?.trim());
+    res.status(200).send({ message: responseText?.trim() });
     return;
   } catch (error) {
     //console.error(error);
