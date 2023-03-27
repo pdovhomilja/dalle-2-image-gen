@@ -3,6 +3,12 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-}
+  images: {
+    domains: [
+      "links.papareact.com",
+      "ai-image-blob.fra1.digitaloceanspaces.com",
+    ],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

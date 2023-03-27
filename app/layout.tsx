@@ -1,4 +1,7 @@
+import Header from "@/components/Header";
 import "../styles/globals.css";
+import PromptInput from "@/components/PromptInput";
+import ClientProvider from "@/components/ClientProvider";
 
 export const metadata = {
   title: "Create Next App",
@@ -12,10 +15,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/* Header */}
-
-      {/* Prompt input */}
-      <body>{children}</body>
+      <body>
+        {/* Client provider is to wrap whole app to be able use React hot toast */}
+        <ClientProvider>
+          {/* Header */}
+          <Header />
+          {/* Prompt input */}
+          <PromptInput />
+          <div>{children}</div>
+        </ClientProvider>
+      </body>
     </html>
   );
 }
