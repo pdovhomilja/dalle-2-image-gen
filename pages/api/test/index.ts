@@ -19,11 +19,11 @@ export default async function handler(
     });
     //console.log(response.data.usage, "response");
 
-    const responseText = response.data.choices[0].text;
+    const responseText: any = response.data.choices[0].text;
 
     //console.log(response.data.choices[0].text, "responseText");
 
-    res.status(200).send({ message: responseText?.trim() });
+    res.status(200).send(responseText?.trim());
     return;
   } catch (error) {
     //console.error(error);
