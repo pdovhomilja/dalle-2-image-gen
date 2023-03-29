@@ -3,6 +3,7 @@ import Image from "next/image";
 import useSWR from "swr";
 import fetchImages from "@/lib/fetchImages";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
 
 function ImageGallery() {
   //Use SWR to fetch images from the API
@@ -17,6 +18,37 @@ function ImageGallery() {
   });
 
   const imageUrls = data?.message || [];
+
+  const handelDelete = (imageUrl: string) => {
+    const notification = toast.loading(`Deleting image ..."`);
+
+    const deleteImage = async (imageUrl: string) => {
+      console.log(imageUrl, "imageUrl");
+      const res = await fetch("/api/deleteImage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url: imageUrl }),
+      });
+      const data = await res.json();
+
+      if (data.message === "success") {
+        refreshImages(data);
+      }
+    };
+    deleteImage(imageUrl);
+
+    if (data.error) {
+      toast.error(data.error, {
+        id: notification,
+      });
+    } else {
+      toast.success(`Image deleted`, {
+        id: notification,
+      });
+    }
+  };
 
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
@@ -33,7 +65,7 @@ function ImageGallery() {
         <div>There is no images!</div>
       ) : (
         imageUrls.map((imageUrl: string, index: number) => (
-          <div key={index} className="w-86 ">
+          <div key={index} className="flex w-86 items-end justify-end ">
             <Link href={`/image?imageUrl=${imageUrl}`}>
               <Image
                 src={imageUrl}
@@ -42,6 +74,12 @@ function ImageGallery() {
                 height={400}
               />
             </Link>
+            <p
+              onClick={() => handelDelete(imageUrl)}
+              className=" bg-yellow-300 w-6 h-6 px-2 justify-center items-center cursor-pointer"
+            >
+              X
+            </p>
           </div>
         ))
       )}
