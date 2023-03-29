@@ -1,5 +1,5 @@
 export async function GET(req: Request, res: Response) {
-  const response = await fetch("http://localhost:3000/api/test", {
+  const response = await fetch("http://localhost:3000/api/generatePrompt", {
     cache: "no-store",
   });
   const textData = await response.text();

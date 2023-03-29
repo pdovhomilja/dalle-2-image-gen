@@ -13,7 +13,7 @@ function PromptInput() {
     isLoading,
     mutate,
     isValidating,
-  } = useSWR("/api/test", fetchSuggestionFromChatGPT, {
+  } = useSWR("/api/generatePrompt", fetchSuggestionFromChatGPT, {
     revalidateOnFocus: false,
   });
 

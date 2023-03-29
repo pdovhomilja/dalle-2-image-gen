@@ -1,5 +1,8 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { SignUp, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut } from "@clerk/nextjs/app-beta/client";
 
 type Props = {};
 
@@ -27,12 +30,24 @@ function Header({}: Props) {
         </div>
       </Link>
       <div className="flex text-xs md:text-base divide-x items-center text-gray-500">
-        <Link className="px-2 font-light" href="/edit">
-          Edit
-        </Link>
-        <Link className="px-2 font-light" href="/about">
-          Link2
-        </Link>
+        <SignedIn>
+          {/* Mount the UserButton component */}
+          <UserButton />
+          <Link className="px-2 font-light" href="/edit">
+            Edit
+          </Link>
+          <Link className="px-2 font-light" href="/about">
+            Link2
+          </Link>
+        </SignedIn>
+        <SignedOut>
+          <Link className="px-2 font-light" href="/sign-up">
+            Sign Up
+          </Link>
+          <Link className="px-2 font-light" href="/sign-in">
+            Sign In
+          </Link>
+        </SignedOut>
       </div>
     </div>
   );
