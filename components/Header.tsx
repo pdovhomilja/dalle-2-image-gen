@@ -34,10 +34,10 @@ function Header({}: Props) {
           {/* Mount the UserButton component */}
           <UserButton />
           <Link className="px-2 font-light" href="/edit">
-            Edit
+            <p className="btn"> Edit</p>
           </Link>
-          <Link className="px-2 font-light" href="/about">
-            Link2
+          <Link className="px-2 font-light" href="/generate">
+            <p className="btn"> New images</p>
           </Link>
         </SignedIn>
         <SignedOut>

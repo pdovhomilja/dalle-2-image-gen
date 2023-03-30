@@ -28,7 +28,6 @@ export default async function RootLayout({
             <Header />
             {/* Prompt input */}
             <SignedIn>
-              <PromptInput />
               <div>{children}</div>
             </SignedIn>
             <SignedOut>

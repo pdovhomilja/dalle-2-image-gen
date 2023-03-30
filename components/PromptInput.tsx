@@ -4,9 +4,11 @@ import { FormEvent, useState } from "react";
 import fetchSuggestionFromChatGPT from "@/lib/fechSuggestionFromChatGPT";
 import fetchImages from "@/lib/fetchImages";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 function PromptInput() {
   const [input, setInput] = useState("");
+  const router = useRouter();
 
   const {
     data: suggestion,
@@ -70,10 +72,12 @@ function PromptInput() {
           id: notification,
         }
       );
+      router.push("/");
     }
 
     //refresh images after generating a new image
-    refreshImages();
+
+    //refreshImages();
   };
 
   const handlePrompt = async (e: FormEvent<HTMLFormElement>) => {
