@@ -21,7 +21,7 @@ export default async function handler(
 
     const responseText: any = response.data.choices[0].text;
 
-    //console.log(response.data.choices[0].text, "responseText");
+    console.log(response.data.choices[0].text, "responseText");
 
     res.status(200).send(responseText?.trim());
     return;
